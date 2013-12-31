@@ -113,7 +113,10 @@ public class LazyLoadQueryResult extends AbstractQueryResult implements Serializ
 
     public void addCandidateResult(AbstractClassMetaData cmd, DBCursor cursor, int[] fpMembers)
     {
-        candidateResults.add(new CandidateClassResult(cmd, cursor, fpMembers));
+        if (cursor.hasNext())
+        {
+            candidateResults.add(new CandidateClassResult(cmd, cursor, fpMembers));
+        }
     }
 
     /**
